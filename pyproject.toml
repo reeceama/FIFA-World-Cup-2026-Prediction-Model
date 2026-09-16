@@ -1,0 +1,21 @@
+[project]
+name = "wcmodel"
+version = "1.0.0"
+description = "Dixon-Coles Monte Carlo forecast of the 2026 FIFA World Cup"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "seaborn",
+    "requests",
+    "beautifulsoup4",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

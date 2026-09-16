@@ -1,212 +1,212 @@
 team,games,avg_elo
-Argentina,69,2124.2
-Spain,67,2076.23
-France,66,2074.1
-Brazil,65,2066.39
-England,68,2003.61
-Portugal,65,2000.55
-Netherlands,64,1972.48
-Belgium,62,1962.89
-Colombia,68,1953.94
-Italy,62,1949.72
-Germany,64,1938.84
-Uruguay,65,1928.68
-Croatia,64,1915.44
-Denmark,62,1886.48
-Switzerland,64,1871.47
-Ecuador,68,1870.72
-Japan,69,1841.05
-Mexico,97,1825.6
-Serbia,58,1818.84
-Ukraine,58,1815.1
-Iran,66,1805.2
-Austria,60,1801.35
-Morocco,82,1791.94
-Norway,52,1784.73
-USA,87,1783.92
-Peru,64,1779.51
-Czech Republic,60,1776.78
-Hungary,57,1772.22
-South Korea,72,1770.98
-Turkey,59,1770.87
-Russia,39,1768.89
-Canada,75,1757.47
-Senegal,78,1756.43
-Paraguay,58,1752.32
-Australia,60,1751.9
-Scotland,58,1749.84
-Poland,61,1748.56
-Sweden,58,1747.64
-Wales,57,1743.62
-Greece,51,1733.03
-Chile,62,1725.76
-Venezuela,59,1723.02
-Algeria,77,1709.55
-Panama,85,1687.04
-Slovenia,56,1685.98
-Tunisia,79,1664.72
-Costa Rica,76,1659.6
-Egypt,75,1657.62
-Slovakia,59,1656.67
-Romania,55,1653.52
-Republic of Ireland,53,1647.81
-Georgia,53,1641.25
-Côte d'Ivoire,64,1637.91
-Bolivia,63,1631.84
-Uzbekistan,63,1629.42
-Finland,56,1628.23
-Nigeria,70,1627.65
-Israel,48,1612.78
-Mali,58,1607.43
-Cameroon,62,1605.82
-Albania,54,1603.13
-Iraq,70,1597.83
-Saudi Arabia,86,1594.33
-Jordan,76,1589.96
-North Macedonia,57,1584.69
-Qatar,86,1572.52
-Jamaica,81,1569.02
-Bosnia and Herzegovina,50,1558.19
-Northern Ireland,48,1550.15
-New Zealand,46,1549.15
-Iceland,61,1545.96
-Burkina Faso,65,1544.43
-South Africa,79,1543.99
-Kosovo,53,1541.64
-Ghana,60,1533.82
-Oman,80,1531.72
-DR Congo,59,1529.55
-Montenegro,52,1524.25
-Haiti,50,1522.12
-Honduras,71,1519.42
-United Arab Emirates,70,1505.01
-Cabo Verde,57,1503.83
-Guatemala,71,1487.15
-Bahrain,73,1485.68
-Bulgaria,53,1483.45
-Equatorial Guinea,53,1465.17
-Angola,66,1465.09
-Armenia,50,1456.83
-Belarus,50,1455.65
-Gabon,47,1447.23
-Luxembourg,52,1444.88
-Guinea,55,1440.26
-China PR,52,1439.16
+Argentina,71,2112.61
+Brazil,66,2078.03
+Spain,69,2071.64
+France,68,2069.21
+Portugal,67,2006.52
+England,70,2002.13
+Belgium,64,1981.39
+Netherlands,66,1973.11
+Italy,64,1962.05
+Colombia,69,1957.67
+Germany,65,1936.91
+Uruguay,65,1933.63
+Croatia,65,1909.8
+Denmark,64,1898.11
+Switzerland,65,1874.31
+Ecuador,69,1859.09
+Japan,69,1838.22
+Mexico,96,1834.89
+Serbia,59,1815.75
+Ukraine,59,1811.75
+Iran,66,1806.74
+Austria,60,1803.55
+Morocco,84,1799.39
+USA,87,1788.46
+Norway,53,1786.64
+Peru,66,1781.89
+Czech Republic,61,1779.57
+Turkey,60,1774.65
+South Korea,73,1773.95
+Russia,40,1768.4
+Hungary,59,1765.88
+Sweden,59,1760.12
+Paraguay,58,1758.53
+Poland,61,1754.7
+Canada,76,1754.05
+Wales,59,1753.76
+Australia,61,1753.74
+Senegal,79,1751.23
+Chile,64,1739.97
+Scotland,59,1739.39
+Greece,53,1731.94
+Venezuela,61,1731.66
+Algeria,77,1723.1
+Slovenia,57,1688.35
+Panama,86,1673.16
+Slovakia,59,1660.83
+Tunisia,80,1659.49
+Costa Rica,76,1656.76
+Egypt,76,1656.46
+Romania,57,1655.04
+Republic of Ireland,54,1644.28
+Nigeria,72,1641.56
+Georgia,55,1638.87
+Uzbekistan,63,1637.29
+Finland,57,1634.19
+Côte d'Ivoire,65,1634.17
+Bolivia,64,1629.5
+Israel,49,1613.69
+Mali,59,1608.78
+Albania,56,1606.07
+Cameroon,62,1603.73
+Iraq,72,1601.76
+Saudi Arabia,88,1599.23
+North Macedonia,56,1585.54
+Qatar,85,1585.36
+Jordan,75,1582.93
+Jamaica,81,1569.54
+Bosnia and Herzegovina,51,1563.59
+New Zealand,48,1554.54
+Northern Ireland,50,1553.14
+Burkina Faso,67,1547.57
+Iceland,62,1546.63
+Kosovo,53,1545.43
+DR Congo,61,1542.92
+South Africa,80,1541.65
+Ghana,61,1538.51
+Oman,81,1527.89
+Honduras,72,1527.07
+Haiti,52,1522.62
+Montenegro,53,1521.4
+United Arab Emirates,70,1507.3
+Cabo Verde,58,1504.72
+Guatemala,73,1489.68
+Bahrain,74,1487.85
+Bulgaria,53,1480.26
+Angola,68,1476.43
+Equatorial Guinea,54,1471.5
+Armenia,51,1462.51
+Belarus,52,1456.71
+El Salvador,78,1449.0
+Guinea,56,1444.77
+Luxembourg,54,1444.33
+Gabon,47,1440.79
 Syria,60,1439.07
-El Salvador,77,1433.06
-Zambia,69,1432.42
-Palestine,44,1428.0
-Kazakhstan,53,1413.21
-Benin,48,1411.52
-Uganda,53,1403.57
-Gambia,45,1402.23
-Martinique,35,1395.57
-Estonia,56,1393.07
-Azerbaijan,50,1391.88
-Trinidad and Tobago,66,1386.73
-Curaçao,48,1379.71
-Thailand,74,1377.65
-North Korea,19,1377.01
-Kenya,39,1375.88
-Libya,50,1370.83
-Mozambique,70,1364.07
-Mauritania,58,1361.81
-Namibia,59,1360.04
-Vietnam,66,1351.78
-Guinea-Bissau,47,1349.56
-Suriname,45,1348.04
-Togo,41,1346.84
-Tanzania,53,1344.15
-Sudan,70,1343.36
-Kuwait,67,1341.08
-Zimbabwe,50,1338.5
-Sierra Leone,40,1334.01
-Botswana,57,1330.43
-Lebanon,59,1329.64
-Cyprus,51,1321.19
-Latvia,52,1320.48
-Madagascar,50,1314.37
-Tajikistan,48,1311.46
-Ethiopia,46,1308.86
-Comoros,67,1305.95
-Rwanda,41,1305.39
-Liberia,42,1299.45
-Nicaragua,50,1297.05
-Lithuania,52,1294.15
-Malawi,58,1294.1
-Central African Republic,36,1284.9
-Faroe Islands,50,1283.93
-Guadeloupe,36,1283.04
-Cuba,43,1279.99
-Indonesia,70,1279.58
-Moldova,53,1278.95
-Niger,48,1277.32
-Kyrgyzstan,49,1274.1
-Congo,29,1272.6
-French Guiana,28,1270.57
-Burundi,37,1267.77
-Malta,50,1254.27
-Malaysia,64,1249.08
-Eswatini,58,1245.43
-New Caledonia,21,1240.17
-Turkmenistan,29,1238.53
-Lesotho,65,1222.17
-Dominican Republic,40,1221.8
-Guyana,46,1220.44
-Fiji,36,1208.52
-India,60,1196.87
-Solomon Islands,35,1188.96
-Tahiti,19,1176.35
-Bermuda,38,1174.18
-Chad,28,1167.09
-Papua New Guinea,27,1142.63
-Hong Kong,56,1127.55
-Saint Kitts and Nevis,43,1121.5
-Yemen,31,1121.11
-South Sudan,36,1117.34
-Singapore,57,1114.89
-Grenada,45,1110.63
-Vanuatu,30,1108.66
-Puerto Rico,33,1108.52
-Saint Vincent and the Grenadines,45,1106.43
-Philippines,49,1094.51
-Afghanistan,34,1090.11
-Andorra,52,1085.65
-Belize,34,1081.36
-São Tomé and Príncipe,22,1060.16
-Saint Lucia,30,1054.12
-Gibraltar,51,1053.57
-Antigua and Barbuda,27,1044.58
-Mauritius,39,1017.82
-Dominica,30,990.44
-Barbados,39,988.4
-Liechtenstein,50,977.52
-Montserrat,24,970.43
-Aruba,29,941.99
-Myanmar,49,936.84
-Nepal,52,921.74
-Saint Martin,29,920.16
-Somalia,24,910.44
-Djibouti,28,907.87
-Taiwan,30,894.52
-Maldives,37,892.7
-Bangladesh,54,889.55
-Bonaire,26,889.54
-Seychelles,36,870.65
-Sint Maarten,27,853.24
-Cambodia,41,849.7
-Pakistan,22,843.23
-Cayman Islands,24,836.1
-Bahamas,31,818.46
-San Marino,50,804.28
-Mongolia,21,769.75
-Turks and Caicos Islands,23,711.88
-Sri Lanka,36,704.94
-Guam,16,704.26
-Laos,30,679.67
-Timor-Leste,28,639.52
-British Virgin Islands,29,631.63
-United States Virgin Islands,23,629.94
-Brunei,29,628.56
-Anguilla,36,602.12
-Bhutan,20,591.91
+Zambia,69,1437.45
+China,50,1435.84
+Palestine,46,1426.72
+Benin,49,1420.2
+Kazakhstan,55,1414.73
+Uganda,52,1410.75
+Gambia,45,1399.51
+Martinique,35,1397.74
+Estonia,57,1390.72
+North Korea,17,1388.47
+Trinidad and Tobago,67,1387.72
+Thailand,76,1386.25
+Azerbaijan,52,1385.21
+Curaçao,49,1382.29
+Kenya,41,1378.71
+Libya,49,1370.84
+Namibia,59,1367.12
+Mozambique,72,1363.32
+Mauritania,60,1359.58
+Guinea-Bissau,47,1357.4
+Vietnam,66,1354.88
+Suriname,45,1353.82
+Kuwait,68,1348.69
+Tanzania,53,1346.87
+Zimbabwe,50,1346.24
+Togo,42,1343.24
+Sudan,67,1342.09
+Sierra Leone,41,1334.76
+Botswana,56,1330.7
+Lebanon,59,1330.54
+Tajikistan,49,1321.22
+Cyprus,53,1320.21
+Comoros,65,1317.65
+Latvia,54,1316.93
+Madagascar,48,1313.33
+Ethiopia,44,1308.55
+Rwanda,41,1306.8
+Liberia,44,1302.84
+Nicaragua,51,1298.24
+Lithuania,53,1295.45
+Central African Republic,38,1290.74
+Malawi,60,1289.77
+French Guiana,28,1288.93
+Congo,29,1286.9
+Faroe Islands,52,1279.4
+Cuba,43,1279.07
+Guadeloupe,36,1279.03
+Niger,48,1278.85
+Burundi,36,1275.36
+Moldova,55,1274.29
+Indonesia,72,1273.56
+Kyrgyzstan,50,1267.72
+Malta,51,1255.35
+Malaysia,64,1246.97
+Eswatini,58,1245.71
+Dominican Republic,41,1234.71
+Turkmenistan,28,1233.96
+New Caledonia,21,1231.14
+Lesotho,67,1226.51
+Guyana,45,1220.53
+Solomon Islands,35,1212.91
+Fiji,38,1207.26
+India,61,1202.49
+Tahiti,17,1170.65
+Bermuda,39,1164.41
+Chad,28,1155.46
+Papua New Guinea,27,1128.37
+Hong Kong,58,1122.43
+Puerto Rico,34,1120.88
+South Sudan,36,1120.75
+Yemen,32,1119.62
+Saint Kitts and Nevis,43,1118.88
+Singapore,58,1116.19
+Grenada,45,1109.67
+Saint Vincent and the Grenadines,45,1107.31
+Vanuatu,32,1100.09
+Philippines,51,1086.88
+Andorra,54,1083.61
+Afghanistan,35,1077.26
+Belize,34,1075.15
+Saint Lucia,30,1070.47
+São Tomé and Príncipe,22,1058.36
+Gibraltar,53,1052.81
+Antigua and Barbuda,27,1038.44
+Mauritius,36,1015.67
+Barbados,39,994.67
+Dominica,30,994.63
+Liechtenstein,46,987.7
+Montserrat,24,973.92
+Aruba,30,946.73
+Myanmar,50,937.62
+Saint Martin,28,930.11
+Nepal,52,926.67
+Somalia,22,915.68
+Djibouti,26,913.0
+Taiwan,29,901.9
+Maldives,37,897.73
+Bangladesh,54,887.31
+Bonaire,27,881.33
+Seychelles,32,874.12
+Sint Maarten,27,862.33
+Cambodia,41,851.59
+Pakistan,25,836.64
+Cayman Islands,25,826.72
+Bahamas,31,818.9
+San Marino,34,803.44
+Mongolia,20,771.25
+Turks and Caicos Islands,21,720.71
+Sri Lanka,35,710.09
+Guam,18,705.78
+Laos,30,678.3
+Timor-Leste,30,652.5
+British Virgin Islands,30,647.07
+United States Virgin Islands,21,634.19
+Brunei,30,628.2
+Anguilla,34,609.32
+Bhutan,22,601.41

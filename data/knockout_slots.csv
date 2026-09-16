@@ -15,8 +15,8 @@ match_id,round,date_utc,venue,slot_home,slot_away
 86,Round of 32,2026-07-03T22:00:00Z,"Hard Rock Stadium, Miami",Winner Group J,Runner-up Group H
 87,Round of 32,2026-07-04T01:30:00Z,"GEHA Field at Arrowhead Stadium, Kansas City",Winner Group K,Best 3rd (Groups D/E/I/J/L)
 88,Round of 32,2026-07-03T18:00:00Z,"AT&T Stadium, Dallas",Runner-up Group D,Runner-up Group G
-89,Round of 16,2026-07-04T17:00:00Z,"NRG Stadium, Houston",Winner Match 73,Winner Match 75
-90,Round of 16,2026-07-04T21:00:00Z,"Lincoln Financial Field, Philadelphia",Winner Match 74,Winner Match 77
+89,Round of 16,2026-07-04T21:00:00Z,"Lincoln Financial Field, Philadelphia",Winner Match 74,Winner Match 77
+90,Round of 16,2026-07-04T17:00:00Z,"NRG Stadium, Houston",Winner Match 73,Winner Match 75
 91,Round of 16,2026-07-05T20:00:00Z,"MetLife Stadium, East Rutherford",Winner Match 76,Winner Match 78
 92,Round of 16,2026-07-06T00:00:00Z,"Estadio Azteca, Mexico City",Winner Match 79,Winner Match 80
 93,Round of 16,2026-07-06T19:00:00Z,"AT&T Stadium, Dallas",Winner Match 83,Winner Match 84

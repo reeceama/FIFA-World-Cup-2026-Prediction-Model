@@ -1,0 +1,18 @@
+{
+  "simulations": 100000,
+  "seed": 2026,
+  "what_this_is": "v0.0.0 ratings run through a 100k Monte Carlo. The June notebook produced single brackets rather than probabilities; this recovers the distribution those ratings imply.",
+  "inherited_from_v000": {
+    "ratings_source": "notebook.ipynb cell 26 output, dated 11 June 2026 05:07, before the opening match",
+    "elo_exponent": 1.67,
+    "rho": -0.13,
+    "home_advantage": null,
+    "world_cup_baseline": null
+  },
+  "from_v1_0_0": {
+    "tournament_logic": "group tables, tiebreakers (Pts, h2h, GD, GF, TCS, FIFA rank), best-third selection, extra time and shootouts",
+    "bracket": "corrected knockout_slots.csv. v0.0.0 numbered the R32 fixtures differently, so four of the eight R16 ties routed the wrong R32 winners together. The pairings themselves were right; the routing between rounds was not. Preserving that bug would make the comparison worse, not more faithful.",
+    "scorelines": "sampled per match rather than v0.0.0 modal scorelines"
+  },
+  "why_sampling": "modal scorelines are deterministic and cannot produce a distribution; sampling each match is what turns the frozen ratings into probabilities"
+}
