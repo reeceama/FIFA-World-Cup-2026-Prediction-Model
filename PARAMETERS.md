@@ -55,6 +55,24 @@ Every value above sits inside its 95% profile likelihood interval. The curves ar
 python -m wcmodel.fit_mle
 ```
 
+| Parameter | Shipped | Profile best | 95% interval |
+|---|---:|---:|---:|
+| Shrinkage | 0.84 | 0.96 | [0.84, 1.00] |
+| Raw weight | 0.10 | 0.00 | [0.00, 0.18] |
+| Elo weight | 0.30 | 0.10 | [0.00, 0.30] |
+| Squad value weight | 0.07 | 0.08 | [0.05, 0.12] |
+| Rho | −0.1079 | −0.11 | [−0.20, −0.01] |
+| Goal baseline | 1.0972 | 1.09 | [1.04, 1.14] |
+| Home advantage | 1.1778 | 1.18 | [1.155, 1.20] |
+
+Some of these bounds are where the search grid ended rather than where the likelihood ran out,
+so they read tighter than the data can really support.
+
+Where the profile best differs from the shipped value, the shipped value is the held-out choice
+described above. The likelihood pulls the priors towards zero on the data it was fitted to,
+raw weight to 0.00 and Elo weight to 0.10, which is the behaviour the previous section exists
+to explain.
+
 Shrinkage sits at the bottom of its interval. Below 0.84 the profile likelihood falls away
 sharply, and its own minimum is at 0.96. Rho has no identified lower bound, and its profile
 runs to the edge of the grid.

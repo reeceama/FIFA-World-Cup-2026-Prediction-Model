@@ -34,7 +34,7 @@ def output_folder(simulations):
                         f"{dt.datetime.now().strftime('%Y-%m-%d_%H%M')}")
 
 
-def main(simulations = 100000, seed = 20260611):
+def main(simulations = 100000, seed = 2026):
 
     """
     Simulates the tournament and writes the forecast tables, the team ratings behind them
@@ -44,8 +44,8 @@ def main(simulations = 100000, seed = 20260611):
     ----------
     simulations : int, default 100000
         How many tournaments to play.
-    seed : int, default 20260611
-        Fixed so a run can be reproduced exactly.
+    seed : int, default 2026
+        Fixed so a run can be reproduced exactly. 2026 produced the published forecast.
     """
 
     np.random.seed(seed)

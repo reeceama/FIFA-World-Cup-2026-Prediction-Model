@@ -264,7 +264,7 @@ def bracket_hits(played):
     bracket = load_csv(f'{RUN_DIR}/likely_bracket.csv')
 
     rows = []
-    for name, _ in ROUNDS[:-1]:
+    for name, _ in ROUNDS:
         actual = played[played['round'] == name]
         actual_teams = set(actual['home_team']) | set(actual['away_team'])
         predicted = bracket[bracket['Round'] == name]
@@ -275,6 +275,31 @@ def bracket_hits(played):
                          'of' : len(actual_teams)})
 
     return pd.DataFrame(rows)
+
+
+def champion(played):
+
+    """
+    The predicted champion against the team that actually won it.
+
+    Parameters
+    ----------
+    played : pd.DataFrame
+        From load_tournament.
+
+    Returns
+    -------
+    dict
+        Predicted and actual champion.
+    """
+
+    bracket = load_csv(f'{RUN_DIR}/likely_bracket.csv')
+    predicted = bracket[bracket['Round'] == 'Final']['Winner'].iloc[0]
+
+    final = played[played['round'] == 'Final']
+    actual = who_advanced(played)[final.index[0]]
+
+    return {'predicted' : predicted, 'actual' : actual}
 
 
 def goals_per_match(played):
@@ -370,6 +395,10 @@ def run():
     print('  bracket')
     for _, row in bracket_hits(played).iterrows():
         print(f'    {row["round"]:<22} {row["correct"]}/{row["of"]}')
+
+    won = champion(played)
+    print()
+    print(f'  champion  predicted {won["predicted"]}, actual {won["actual"]}')
 
 
 if __name__ == '__main__':

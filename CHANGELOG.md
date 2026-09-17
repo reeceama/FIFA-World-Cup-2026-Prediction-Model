@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.1 Patch Notes
+
+- `evaluate.py` now scores the final and reports the predicted champion.
+- `run_forecast.py` default seed set back to 2026, the seed that produced the published forecast.
+- Added a table of the 95% profile likelihood intervals to `PARAMETERS.md`.
+
 ## v1.0.0 Patch Notes
 
 - Output is now probabilistic. 100,000 Monte Carlo tournaments produce a probability for every
@@ -13,9 +19,7 @@
 - `elo_modifier` removed entirely. Elo now enters as a prior on the ratings inside
   `blend_ratings` rather than as an xG tilt applied at match time.
 - Squad market value added as a rating component (`apply_squad_value`), and a shrinkage
-  exponent added to compress the spread of the blended ratings. Both weights, along with the
-  weight on the Elo prior and on raw goal rates, are chosen on held-out data rather than by
-  likelihood, since a likelihood always prefers less regularisation.
+  exponent added to compress the spread of the blended ratings.
 - `rho` and home advantage are now fitted by maximum likelihood in `fit_mle` instead of being
   set by hand (−0.1079 and 1.1778).
 - Added a fitted goal baseline (1.0972) that scales expected goals to the level matches
@@ -27,7 +31,7 @@
   per parameter with a 95% interval.
 - Elo is now read per fixture from `wf_elo_history.csv` rather than as a multi-year average,
   so a match is rated using what was known before it was played.
-- Time decay reparameterised from a yearly to a daily rate and retuned on held-out
+- Time decay changed from a yearly to a daily rate and retuned on held-out
   validation, moving the half-life from about 2.3 years to 2.0.
 - Data window extended to 10 June 2026.
 - Cards reverted from a binomial back to a Poisson distribution, with red card rates now
