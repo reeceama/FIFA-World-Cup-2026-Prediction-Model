@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.1.0 Patch Notes
+
+- Shrinkage removed, justified by the principle of parsimony.
+- Schedule adjustment removed. Its weight was zero, so it did nothing. `calc_relative_schedule`
+  stays, since the figure is still reported in the team stats table.
+- `rho`, the goal baseline and home advantage refitted against the remaining weights
+  (−0.1075, 1.0559 and 1.1597).
+- `fit_mle` now reports the constants the model actually ships with, rather than only the ones
+  its own search picked.
+- Added `weights.py`, reporting match weight by competition and where each rating comes from.
+- `evaluate.py` writes `wc2026_match_scores.csv`, one row per match with the model's call.
+- Forecast rerun at 100,000 simulations, and new results are reported across the project.
+- Added the competition weight and rating contribution tables to `PARAMETERS.md`, and the
+  calibration table now appears in full in the README.
+- Reworded the README, PARAMETERS and forecast notebook for clearer communication.
+
 ## v1.0.1 Patch Notes
 
 - `evaluate.py` now scores the final and reports the predicted champion.

@@ -1,13 +1,11 @@
 {
   "simulations": 100000,
   "seed": 2026,
-  "rho": -0.1079,
-  "world_cup_baseline": 1.0972,
-  "home_advantage": 1.1778,
-  "shrinkage": 0.84,
+  "rho": -0.1075,
+  "world_cup_baseline": 1.0559,
+  "home_advantage": 1.1597,
   "raw_weight": 0.1,
   "elo_weight": 0.3,
-  "schedule_weight": 0.0,
   "value_weight": 0.07,
   "data_frozen": "2026-06-10",
   "calibration": {
@@ -22,73 +20,77 @@
     "inner_split_date": "2024-06-30 00:00:00",
     "outer_split_date": "2025-06-04 00:00:00",
     "stage_1": {
-      "shrinkage": 0.84,
-      "raw_weight": 0.05,
-      "elo_weight": 0.27,
-      "inner_validation_nll": 2416.979364754471,
+      "raw_weight": 0.22,
+      "elo_weight": 0.32,
+      "inner_validation_nll": 2423.4911918124544,
       "schedule_weight": 0.0,
       "value_weight": 0.07,
       "home_advantage_applied": 1.0,
-      "outer_train_nll": 11547.663745778324
+      "outer_train_nll": 11519.704787309034
     },
     "stage_2": {
-      "rho": -0.1172,
-      "g": 1.0861,
-      "train_nll": 1455.9124468093246,
+      "rho": -0.1153,
+      "g": 1.0642,
+      "train_nll": 1457.2446041418712,
       "home_advantage_applied": 1.0,
-      "validation_nll": 431.84421237306543
+      "validation_nll": 432.72021872125265
     },
     "final_engine": {
-      "rho": -0.1078,
-      "g": 1.0908,
-      "train_nll": 1888.2373959825313,
+      "rho": -0.1064,
+      "g": 1.0705,
+      "train_nll": 1888.346483039994,
       "home_advantage_applied": 1.0,
-      "validation_nll": 1888.2373959825313
+      "validation_nll": 1888.346483039994
+    },
+    "shipped_refit": {
+      "raw_weight": 0.1,
+      "elo_weight": 0.3,
+      "rho": -0.1075,
+      "g": 1.0559,
+      "home_advantage": 1.1597,
+      "finalist_fixtures": 675,
+      "home_fixtures": 5328
     },
     "profile_intervals": {
       "rho": [
         null,
-        -0.01
+        -0.005
       ],
       "g": [
-        1.04,
-        1.14
+        1.03,
+        1.12
       ]
     },
     "stage_one_intervals": {
-      "shrinkage": [
-        0.84,
-        null
-      ],
       "raw_weight": [
         null,
-        0.18
+        null
       ],
       "elo_weight": [
-        null,
-        0.3
+        0.1,
+        0.45
       ],
       "schedule_weight": [
         null,
-        0.05
+        0.04
       ],
       "value_weight": [
-        0.05,
-        0.12
+        0.01,
+        0.08
       ]
     },
     "home": {
-      "home_advantage": 1.1758,
-      "level": 1.0588,
+      "home_advantage": 1.1647,
+      "level": 1.0027,
       "interval": [
-        1.155,
-        1.195
+        1.145,
+        1.185
       ],
       "non_neutral": 3523,
       "matches": 5328,
-      "gain_over_no_advantage": 125.58
+      "gain_over_no_advantage": 111.82
     }
   },
-  "started_at": "2026-09-14T19:07:14",
-  "finished_at": "2026-09-14T21:39:37"
+  "started_at": "2026-09-17T18:05:30",
+  "finished_at": "2026-09-18T04:26:24"
 }

@@ -27,6 +27,7 @@ TOURNAMENT_END = '2026-07-19'
 KNOCKOUT_START = '2026-06-28'
 
 RUN_DIR = '100k_monte_carlo'
+MATCH_SCORES = 'wc2026_match_scores.csv'
 
 # host_boost only looks at the country behind a venue, so any venue in that country will do.
 COUNTRY_VENUE = {'Mexico' : 'Estadio Azteca, Mexico City',
@@ -180,6 +181,64 @@ def score_forecast(simulator, played, advanced):
         hits.append(int(p.argmax()) == outcome)
 
     return np.array(losses), np.array(hits), np.array(group_rps)
+
+
+def match_scores(simulator, played, advanced):
+
+    """
+    Every match, what the model gave it, and whether the call was right.
+
+    Group matches carry three probabilities, since a group match can end level. Knockout ties
+    carry two, because the question there is who went through rather than who led after 90
+    minutes, so the column meaning differs by stage and the frame says which applies.
+
+    Parameters
+    ----------
+    simulator : MatchSimulator
+        The engine to score with.
+    played : pd.DataFrame
+        From load_tournament.
+    advanced : dict of {int : str}
+        From who_advanced.
+
+    Returns
+    -------
+    pd.DataFrame
+        One row per match, in date order.
+    """
+
+    rows = []
+
+    for index, match in played.iterrows():
+        home, away, venue = match['home_team'], match['away_team'], match['venue']
+        result = f"{home} {match['home_score']:.0f}-{match['away_score']:.0f} {away}"
+
+        if match['stage'] == 'group':
+            probabilities = simulator.match_probabilities(home, away, venue = venue)
+            p = np.array([probabilities['home_win'], probabilities['draw'],
+                          probabilities['away_win']])
+            outcome = (0 if match['home_score'] > match['away_score'] else
+                       1 if match['home_score'] == match['away_score'] else 2)
+            picks = [home, 'Draw', away]
+            happened = picks[outcome]
+        else:
+            probabilities = simulator.match_probabilities(home, away, venue = venue,
+                                                          stage = 'knockout')
+            p = np.array([probabilities['home_advances'], probabilities['away_advances']])
+            outcome = 0 if advanced[index] == home else 1
+            picks = [home, away]
+            happened = advanced[index]
+            result = f'{result} ({happened} advanced)'
+
+        rows.append({'date' : str(match['date'])[:10], 'round' : match['round'],
+                     'scored_on' : '90 minutes' if match['stage'] == 'group' else 'who advanced',
+                     'result' : result, 'happened' : happened,
+                     'pick' : picks[int(p.argmax())], 'pick_probability' : round(float(p.max()), 4),
+                     'probability_of_result' : round(float(p[outcome]), 4),
+                     'correct' : bool(int(p.argmax()) == outcome),
+                     'log_loss' : round(float(-np.log(max(p[outcome], 1e-12))), 4)})
+
+    return pd.DataFrame(rows)
 
 
 def build_baseline(df, teams, team_index):
@@ -395,6 +454,11 @@ def run():
     print('  bracket')
     for _, row in bracket_hits(played).iterrows():
         print(f'    {row["round"]:<22} {row["correct"]}/{row["of"]}')
+
+    scores = match_scores(model, played, advanced)
+    scores.to_csv(os.path.join(DATA_DIR, MATCH_SCORES), index = False)
+    print()
+    print(f'  wrote {MATCH_SCORES}, one row per match')
 
     won = champion(played)
     print()

@@ -126,7 +126,7 @@ def _label_team_ratings(ax, teams, x_values, y_values):
         'Paraguay' : (6.5, -10),
         'Scotland' : (-6.5, 10),
         'South Korea' : (-6.5, -4.5),
-        'Czech Republic' : (-6.5, 0),
+        'Czech Republic' : (-6.5, 1.5),
         'Cabo Verde' : (-6.5, 10),
         'New Zealand' : (6.5, -10),
         'England' : (6.5, -10),

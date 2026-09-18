@@ -1,33 +1,33 @@
 Match,Round,Home,Away,Winner,Winner reach %
-73,Round of 32,Czech Republic,Canada,Canada,0.52704
-74,Round of 32,Germany,Australia,Germany,0.64941
-75,Round of 32,Netherlands,Morocco,Morocco,0.54309
-76,Round of 32,Brazil,Japan,Brazil,0.63411
-77,Round of 32,France,Sweden,France,0.70367
-78,Round of 32,Ecuador,Norway,Norway,0.5111
-79,Round of 32,Mexico,Scotland,Mexico,0.53878
-80,Round of 32,England,Senegal,England,0.72379
-81,Round of 32,USA,Algeria,USA,0.51728
-82,Round of 32,Belgium,South Korea,Belgium,0.64895
-83,Round of 32,Colombia,Croatia,Colombia,0.52613
-84,Round of 32,Spain,Austria,Spain,0.72397
-85,Round of 32,Switzerland,Iran,Switzerland,0.61412
-86,Round of 32,Argentina,Uruguay,Argentina,0.64819
-87,Round of 32,Portugal,Côte d'Ivoire,Portugal,0.65924
-88,Round of 32,Turkey,Egypt,Turkey,0.41664
-89,Round of 16,Germany,France,France,0.45701
-90,Round of 16,Canada,Morocco,Morocco,0.32118
-91,Round of 16,Brazil,Norway,Brazil,0.40768
-92,Round of 16,Mexico,England,England,0.50358
-93,Round of 16,Colombia,Spain,Spain,0.5143
-94,Round of 16,USA,Belgium,Belgium,0.37244
-95,Round of 16,Argentina,Turkey,Argentina,0.49487
-96,Round of 16,Switzerland,Portugal,Portugal,0.42491
-97,Quarter-final,France,Morocco,France,0.29057
-98,Quarter-final,Spain,Belgium,Spain,0.38786
-99,Quarter-final,Brazil,England,England,0.32944
-100,Quarter-final,Argentina,Portugal,Argentina,0.34195
-101,Semi-final,France,Spain,Spain,0.25935
-102,Semi-final,England,Argentina,Argentina,0.21332
-103,Third-place playoff,France,England,England,0.20196
-104,Final,Spain,Argentina,Spain,0.1645
+73,Round of 32,Czech Republic,Canada,Canada,0.52345
+74,Round of 32,Germany,Australia,Germany,0.68328
+75,Round of 32,Netherlands,Morocco,Morocco,0.55803
+76,Round of 32,Brazil,Japan,Brazil,0.65231
+77,Round of 32,France,Sweden,France,0.74028
+78,Round of 32,Ecuador,Norway,Norway,0.53035
+79,Round of 32,Mexico,Scotland,Mexico,0.53775
+80,Round of 32,England,Senegal,England,0.75455
+81,Round of 32,USA,Algeria,USA,0.50328
+82,Round of 32,Belgium,South Korea,Belgium,0.68477
+83,Round of 32,Colombia,Croatia,Colombia,0.54645
+84,Round of 32,Spain,Austria,Spain,0.75728
+85,Round of 32,Switzerland,Egypt,Switzerland,0.65078
+86,Round of 32,Argentina,Uruguay,Argentina,0.66812
+87,Round of 32,Portugal,Côte d'Ivoire,Portugal,0.69493
+88,Round of 32,Turkey,Iran,Turkey,0.4283
+89,Round of 16,Germany,France,France,0.48701
+90,Round of 16,Canada,Morocco,Morocco,0.33895
+91,Round of 16,Brazil,Norway,Brazil,0.42715
+92,Round of 16,Mexico,England,England,0.54642
+93,Round of 16,Colombia,Spain,Spain,0.54743
+94,Round of 16,USA,Belgium,Belgium,0.40517
+95,Round of 16,Argentina,Turkey,Argentina,0.53461
+96,Round of 16,Switzerland,Portugal,Portugal,0.45742
+97,Quarter-final,France,Morocco,France,0.31102
+98,Quarter-final,Spain,Belgium,Spain,0.43115
+99,Quarter-final,Brazil,England,England,0.36236
+100,Quarter-final,Argentina,Portugal,Argentina,0.38008
+101,Semi-final,France,Spain,Spain,0.2943
+102,Semi-final,England,Argentina,Argentina,0.2417
+103,Third-place playoff,France,England,England,0.22149
+104,Final,Spain,Argentina,Spain,0.18625

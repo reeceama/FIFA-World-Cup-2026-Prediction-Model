@@ -23,11 +23,11 @@ from wcmodel.team_data import *
 # the 48 finalists inside the window, conditional on the shipped Stage 1 weights in team_data.
 # Home advantage is fitted on all 5,328. The calibration summary reports different values
 # because its search selects its own weights rather than using these.
-RHO = -0.1079  # Dixon-Coles low-score correction.
-WORLD_CUP_BASELINE = 1.0972  # Goal level between finalists against the level the ratings are normalised on.
+RHO = -0.1075  # Dixon-Coles low-score correction.
+WORLD_CUP_BASELINE = 1.0559  # Goal level between finalists against the level the ratings are normalised on.
 
 
-HOME_ADVANTAGE = 1.1778  # The multiplicative stat boost given to host nations in their country.
+HOME_ADVANTAGE = 1.1597  # The multiplicative stat boost given to host nations in their country.
 CO_HOST_ADVANTAGE = HOME_ADVANTAGE - (HOME_ADVANTAGE - 1) / 2  # The multiplicative stat boost given to hosts out of their country.
 
 

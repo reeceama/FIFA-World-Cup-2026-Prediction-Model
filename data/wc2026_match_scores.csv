@@ -1,0 +1,105 @@
+date,round,scored_on,result,happened,pick,pick_probability,probability_of_result,correct,log_loss
+2026-06-11,Group stage,90 minutes,Mexico 2-0 South Africa,Mexico,Mexico,0.6527,0.6527,True,0.4266
+2026-06-11,Group stage,90 minutes,South Korea 2-1 Czech Republic,South Korea,Czech Republic,0.3817,0.3389,False,1.082
+2026-06-12,Group stage,90 minutes,Canada 1-1 Bosnia and Herzegovina,Draw,Canada,0.6467,0.2275,False,1.4806
+2026-06-12,Group stage,90 minutes,USA 4-1 Paraguay,USA,USA,0.4816,0.4816,True,0.7306
+2026-06-13,Group stage,90 minutes,Qatar 1-1 Switzerland,Draw,Switzerland,0.8466,0.1082,False,2.2239
+2026-06-13,Group stage,90 minutes,Brazil 1-1 Morocco,Draw,Brazil,0.3825,0.3379,False,1.085
+2026-06-13,Group stage,90 minutes,Haiti 0-1 Scotland,Scotland,Scotland,0.7466,0.7466,True,0.2923
+2026-06-13,Group stage,90 minutes,Australia 2-0 Turkey,Australia,Turkey,0.4345,0.2817,False,1.2671
+2026-06-14,Group stage,90 minutes,Germany 7-1 Curaçao,Germany,Germany,0.9526,0.9526,True,0.0485
+2026-06-14,Group stage,90 minutes,Côte d'Ivoire 1-0 Ecuador,Côte d'Ivoire,Ecuador,0.4609,0.1961,False,1.6291
+2026-06-14,Group stage,90 minutes,Netherlands 2-2 Japan,Draw,Netherlands,0.4609,0.2787,False,1.2777
+2026-06-14,Group stage,90 minutes,Sweden 5-1 Tunisia,Sweden,Sweden,0.4653,0.4653,True,0.7651
+2026-06-15,Group stage,90 minutes,Saudi Arabia 1-1 Uruguay,Draw,Uruguay,0.669,0.2486,False,1.392
+2026-06-15,Group stage,90 minutes,Spain 0-0 Cabo Verde,Draw,Spain,0.9355,0.0533,False,2.9313
+2026-06-15,Group stage,90 minutes,Belgium 1-1 Egypt,Draw,Belgium,0.5927,0.2651,False,1.3275
+2026-06-15,Group stage,90 minutes,Iran 2-2 New Zealand,Draw,Iran,0.5484,0.2773,False,1.2827
+2026-06-16,Group stage,90 minutes,France 3-1 Senegal,France,France,0.6048,0.6048,True,0.5029
+2026-06-16,Group stage,90 minutes,Iraq 1-4 Norway,Norway,Norway,0.8026,0.8026,True,0.2199
+2026-06-16,Group stage,90 minutes,Argentina 3-0 Algeria,Argentina,Argentina,0.7109,0.7109,True,0.3413
+2026-06-16,Group stage,90 minutes,Austria 3-1 Jordan,Austria,Austria,0.6853,0.6853,True,0.3779
+2026-06-17,Group stage,90 minutes,Portugal 1-1 DR Congo,Draw,Portugal,0.7289,0.1963,False,1.6281
+2026-06-17,Group stage,90 minutes,Uzbekistan 1-3 Colombia,Colombia,Colombia,0.642,0.642,True,0.4432
+2026-06-17,Group stage,90 minutes,England 4-2 Croatia,England,England,0.5472,0.5472,True,0.603
+2026-06-17,Group stage,90 minutes,Ghana 1-0 Panama,Ghana,Ghana,0.3653,0.3653,True,1.0071
+2026-06-18,Group stage,90 minutes,Canada 6-0 Qatar,Canada,Canada,0.7707,0.7707,True,0.2605
+2026-06-18,Group stage,90 minutes,Switzerland 4-1 Bosnia and Herzegovina,Switzerland,Switzerland,0.7351,0.7351,True,0.3078
+2026-06-18,Group stage,90 minutes,Czech Republic 1-1 South Africa,Draw,Czech Republic,0.5554,0.2576,False,1.3562
+2026-06-18,Group stage,90 minutes,Mexico 1-0 South Korea,Mexico,Mexico,0.5015,0.5015,True,0.6902
+2026-06-19,Group stage,90 minutes,Scotland 0-1 Morocco,Morocco,Morocco,0.5614,0.5614,True,0.5774
+2026-06-19,Group stage,90 minutes,Brazil 3-0 Haiti,Brazil,Brazil,0.9316,0.9316,True,0.0708
+2026-06-19,Group stage,90 minutes,USA 2-0 Australia,USA,USA,0.4621,0.4621,True,0.772
+2026-06-19,Group stage,90 minutes,Turkey 0-1 Paraguay,Paraguay,Turkey,0.4561,0.257,False,1.3589
+2026-06-20,Group stage,90 minutes,Germany 2-1 Côte d'Ivoire,Germany,Germany,0.6728,0.6728,True,0.3964
+2026-06-20,Group stage,90 minutes,Ecuador 0-0 Curaçao,Draw,Ecuador,0.811,0.1524,False,1.8815
+2026-06-20,Group stage,90 minutes,Netherlands 5-1 Sweden,Netherlands,Netherlands,0.6653,0.6653,True,0.4075
+2026-06-20,Group stage,90 minutes,Tunisia 0-4 Japan,Japan,Japan,0.5888,0.5888,True,0.5297
+2026-06-21,Group stage,90 minutes,Spain 4-0 Saudi Arabia,Spain,Spain,0.8976,0.8976,True,0.1081
+2026-06-21,Group stage,90 minutes,Uruguay 2-2 Cabo Verde,Draw,Uruguay,0.7356,0.2006,False,1.6066
+2026-06-21,Group stage,90 minutes,New Zealand 1-3 Egypt,Egypt,Egypt,0.5113,0.5113,True,0.6709
+2026-06-21,Group stage,90 minutes,Belgium 0-0 Iran,Draw,Belgium,0.6353,0.2269,False,1.4831
+2026-06-22,Group stage,90 minutes,France 3-0 Iraq,France,France,0.875,0.875,True,0.1336
+2026-06-22,Group stage,90 minutes,Norway 3-2 Senegal,Norway,Norway,0.4764,0.4764,True,0.7414
+2026-06-22,Group stage,90 minutes,Argentina 2-0 Austria,Argentina,Argentina,0.6368,0.6368,True,0.4512
+2026-06-22,Group stage,90 minutes,Jordan 1-2 Algeria,Algeria,Algeria,0.5984,0.5984,True,0.5135
+2026-06-23,Group stage,90 minutes,Portugal 5-0 Uzbekistan,Portugal,Portugal,0.7329,0.7329,True,0.3107
+2026-06-23,Group stage,90 minutes,Colombia 1-0 DR Congo,Colombia,Colombia,0.6391,0.6391,True,0.4477
+2026-06-23,Group stage,90 minutes,England 0-0 Ghana,Draw,England,0.866,0.1054,False,2.25
+2026-06-23,Group stage,90 minutes,Panama 0-1 Croatia,Croatia,Croatia,0.751,0.751,True,0.2864
+2026-06-24,Group stage,90 minutes,Morocco 4-2 Haiti,Morocco,Morocco,0.8711,0.8711,True,0.138
+2026-06-24,Group stage,90 minutes,Scotland 0-3 Brazil,Brazil,Brazil,0.6598,0.6598,True,0.4158
+2026-06-24,Group stage,90 minutes,Bosnia and Herzegovina 3-1 Qatar,Bosnia and Herzegovina,Bosnia and Herzegovina,0.4738,0.4738,True,0.747
+2026-06-24,Group stage,90 minutes,Canada 1-2 Switzerland,Switzerland,Switzerland,0.4259,0.4259,True,0.8536
+2026-06-24,Group stage,90 minutes,South Africa 1-0 South Korea,South Africa,South Korea,0.5331,0.2022,False,1.5985
+2026-06-24,Group stage,90 minutes,Mexico 3-0 Czech Republic,Mexico,Mexico,0.4808,0.4808,True,0.7322
+2026-06-25,Group stage,90 minutes,USA 2-3 Turkey,Turkey,USA,0.4068,0.3198,False,1.1402
+2026-06-25,Group stage,90 minutes,Paraguay 0-0 Australia,Draw,Australia,0.3568,0.332,False,1.1028
+2026-06-25,Group stage,90 minutes,Curaçao 0-2 Côte d'Ivoire,Côte d'Ivoire,Côte d'Ivoire,0.7267,0.7267,True,0.3193
+2026-06-25,Group stage,90 minutes,Ecuador 2-1 Germany,Ecuador,Germany,0.4595,0.2292,False,1.4731
+2026-06-25,Group stage,90 minutes,Japan 1-1 Sweden,Draw,Japan,0.5303,0.2541,False,1.3701
+2026-06-25,Group stage,90 minutes,Tunisia 1-3 Netherlands,Netherlands,Netherlands,0.7115,0.7115,True,0.3404
+2026-06-26,Group stage,90 minutes,Senegal 5-0 Iraq,Senegal,Senegal,0.6574,0.6574,True,0.4194
+2026-06-26,Group stage,90 minutes,Uruguay 0-1 Spain,Spain,Spain,0.5661,0.5661,True,0.569
+2026-06-26,Group stage,90 minutes,Norway 1-4 France,France,France,0.5198,0.5198,True,0.6543
+2026-06-26,Group stage,90 minutes,New Zealand 1-5 Belgium,Belgium,Belgium,0.7873,0.7873,True,0.2391
+2026-06-26,Group stage,90 minutes,Egypt 1-1 Iran,Draw,Egypt,0.3404,0.321,False,1.1363
+2026-06-26,Group stage,90 minutes,Cabo Verde 0-0 Saudi Arabia,Draw,Saudi Arabia,0.3694,0.3413,False,1.0748
+2026-06-27,Group stage,90 minutes,Algeria 3-3 Austria,Draw,Austria,0.433,0.2926,False,1.2288
+2026-06-27,Group stage,90 minutes,Jordan 1-3 Argentina,Argentina,Argentina,0.8918,0.8918,True,0.1145
+2026-06-27,Group stage,90 minutes,Colombia 0-0 Portugal,Draw,Portugal,0.4445,0.2787,False,1.2777
+2026-06-27,Group stage,90 minutes,DR Congo 3-1 Uzbekistan,DR Congo,Draw,0.3694,0.3068,False,1.1816
+2026-06-27,Group stage,90 minutes,Panama 0-2 England,England,England,0.8821,0.8821,True,0.1254
+2026-06-27,Group stage,90 minutes,Croatia 2-1 Ghana,Croatia,Croatia,0.7308,0.7308,True,0.3136
+2026-06-28,Round of 32,who advanced,South Africa 0-1 Canada (Canada advanced),Canada,Canada,0.735,0.735,True,0.3079
+2026-06-29,Round of 32,who advanced,Brazil 2-1 Japan (Brazil advanced),Brazil,Brazil,0.6533,0.6533,True,0.4257
+2026-06-29,Round of 32,who advanced,Germany 1-1 Paraguay (Paraguay advanced),Paraguay,Germany,0.8032,0.1968,False,1.6258
+2026-06-29,Round of 32,who advanced,Netherlands 1-1 Morocco (Morocco advanced),Morocco,Netherlands,0.5173,0.4827,False,0.7285
+2026-06-30,Round of 32,who advanced,Mexico 2-0 Ecuador (Mexico advanced),Mexico,Ecuador,0.5017,0.4983,False,0.6966
+2026-06-30,Round of 32,who advanced,France 3-0 Sweden (France advanced),France,France,0.8502,0.8502,True,0.1623
+2026-06-30,Round of 32,who advanced,Côte d'Ivoire 1-2 Norway (Norway advanced),Norway,Norway,0.748,0.748,True,0.2903
+2026-07-01,Round of 32,who advanced,England 2-1 DR Congo (England advanced),England,England,0.8826,0.8826,True,0.1249
+2026-07-01,Round of 32,who advanced,Belgium 3-2 Senegal (Belgium advanced),Belgium,Belgium,0.622,0.622,True,0.4748
+2026-07-01,Round of 32,who advanced,USA 2-0 Bosnia and Herzegovina (USA advanced),USA,USA,0.8295,0.8295,True,0.1869
+2026-07-02,Round of 32,who advanced,Spain 3-0 Austria (Spain advanced),Spain,Spain,0.8229,0.8229,True,0.195
+2026-07-02,Round of 32,who advanced,Portugal 2-1 Croatia (Portugal advanced),Portugal,Portugal,0.6499,0.6499,True,0.431
+2026-07-02,Round of 32,who advanced,Switzerland 2-0 Algeria (Switzerland advanced),Switzerland,Switzerland,0.6448,0.6448,True,0.4388
+2026-07-03,Round of 32,who advanced,Australia 1-1 Egypt (Egypt advanced),Egypt,Australia,0.5613,0.4387,False,0.8239
+2026-07-03,Round of 32,who advanced,Argentina 3-2 Cabo Verde (Argentina advanced),Argentina,Argentina,0.9663,0.9663,True,0.0343
+2026-07-03,Round of 32,who advanced,Colombia 1-0 Ghana (Colombia advanced),Colombia,Colombia,0.886,0.886,True,0.121
+2026-07-04,Round of 16,who advanced,Canada 0-3 Morocco (Morocco advanced),Morocco,Morocco,0.704,0.704,True,0.351
+2026-07-04,Round of 16,who advanced,Paraguay 0-1 France (France advanced),France,France,0.8412,0.8412,True,0.1729
+2026-07-05,Round of 16,who advanced,Mexico 2-3 England (England advanced),England,England,0.7234,0.7234,True,0.3237
+2026-07-05,Round of 16,who advanced,Brazil 1-2 Norway (Norway advanced),Norway,Brazil,0.6215,0.3785,False,0.9717
+2026-07-06,Round of 16,who advanced,Portugal 0-1 Spain (Spain advanced),Spain,Spain,0.6299,0.6299,True,0.4622
+2026-07-06,Round of 16,who advanced,USA 1-4 Belgium (Belgium advanced),Belgium,Belgium,0.5949,0.5949,True,0.5194
+2026-07-07,Round of 16,who advanced,Argentina 3-2 Egypt (Argentina advanced),Argentina,Argentina,0.875,0.875,True,0.1335
+2026-07-07,Round of 16,who advanced,Switzerland 0-0 Colombia (Switzerland advanced),Switzerland,Colombia,0.5915,0.4085,False,0.8954
+2026-07-09,Quarter-final,who advanced,France 2-0 Morocco (France advanced),France,France,0.5976,0.5976,True,0.5148
+2026-07-10,Quarter-final,who advanced,Spain 2-1 Belgium (Spain advanced),Spain,Spain,0.7328,0.7328,True,0.3109
+2026-07-11,Quarter-final,who advanced,Norway 1-2 England (England advanced),England,England,0.6963,0.6963,True,0.362
+2026-07-11,Quarter-final,who advanced,Argentina 3-1 Switzerland (Argentina advanced),Argentina,Argentina,0.7611,0.7611,True,0.273
+2026-07-14,Semi-final,who advanced,France 0-2 Spain (Spain advanced),Spain,Spain,0.5849,0.5849,True,0.5362
+2026-07-15,Semi-final,who advanced,England 1-2 Argentina (Argentina advanced),Argentina,Argentina,0.5192,0.5192,True,0.6555
+2026-07-18,Third-place playoff,who advanced,France 4-6 England (England advanced),England,England,0.5411,0.5411,True,0.6142
+2026-07-19,Final,who advanced,Spain 1-0 Argentina (Spain advanced),Spain,Spain,0.5178,0.5178,True,0.6582

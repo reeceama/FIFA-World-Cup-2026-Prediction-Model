@@ -2,7 +2,7 @@
 
 ![Predicted bracket](images/likely_bracket.png)
 
-A Dixon-Coles Poisson engine that uses match scorelines, squad market value and World
+This is a Dixon-Coles Poisson engine that uses match scorelines, squad market value and World
 Football Elo to forecast the 2026 World Cup, across 100,000 Monte Carlo simulations.
 Team data built on international matches between June 2021 and 10 June 2026, the day before the opening match.
 
@@ -34,21 +34,20 @@ notebooks themselves are in [`notebooks/`](notebooks).
 
 ## 1. Forecast
 
-Title probability, 100,000 simulations, seed 2026.
+Title probability after 100,000 simulations (seed 2026).
 
 | Team | Model | Market |
 |---|---:|---:|
-| Spain | 16.4% | 16.0% |
-| Argentina | 12.9% | 8.8% |
-| England | 12.1% | 10.6% |
-| France | 9.4% | 16.2% |
+| Spain | 18.6% | 16.0% |
+| Argentina | 14.6% | 8.8% |
+| England | 13.2% | 10.6% |
+| France | 9.5% | 16.2% |
 | Portugal | 7.2% | 10.2% |
 | Brazil | 6.5% | 8.4% |
-| Germany | 5.0% | 5.2% |
-| Netherlands | 4.1% | 4.0% |
+| Germany | 4.9% | 5.2% |
+| Netherlands | 4.0% | 4.0% |
 
-Monte Carlo noise is roughly ±0.3pp at 100,000 simulations, so teams within about half a
-point of each other are not separated by this run.
+As Monte Carlo noise is roughly ±0.3pp at 100,000 simulations, teams within this range are not meaningfully separated by this run.
 
 ## 2. How it works
 
@@ -64,11 +63,9 @@ schedule is built into the rating.
 
 **Blending.** Results alone are noisy, especially for teams that play few competitive games.
 The solved ratings are mixed with a World Football Elo prior and with squad market values from
-Transfermarkt, then compressed by a shrinkage exponent that pulls extreme ratings back towards
-the field.
+Transfermarkt.
 
-**The match engine.** Expected goals for a match are `attack(home) × defence(away) × g × [home_boost(home) / home_boost(away)]`, where
-g lifts the level from the average the ratings are normalised on. Goals are then drawn from
+**The match engine.** Expected goals for a match are `attack(home) × defence(away) × g × [home_boost(home) / home_boost(away)]`, where g lifts the level from the average the ratings are normalised on. Goals are then drawn from
 independent Poisson distributions. The Dixon-Coles correction fixes the shortage of 0-0 and
 1-1 scorelines that plain Poisson produces. Host nations get a boost at venues in their own
 country, and a smaller boost when at venues in the other two host countries.
@@ -110,59 +107,63 @@ figure in this section is reproduced by `python -m wcmodel.backtest`.
 
 | | accuracy | log loss | RPS |
 |---|---:|---:|---:|
-| this model | 60.2% | 0.866 | 0.168 |
-| Elo-only baseline | 59.4% | 0.887 | 0.173 |
+| this model | 60.1% | 0.862 | 0.167 |
+| Elo-only baseline | 59.4% | 0.892 | 0.173 |
 | always back the home team | 47.6% | 1.052 | 0.228 |
 
 RPS is the ranked probability score, which treats the three outcomes as ordered. Calling a home
 win when it finished a draw costs less than calling one when it finished an away win, where log
 loss charges the same for both. Lower is better.
 
-The Elo-only baseline is the same pipeline with the rating blend cut back to the Elo prior.
-Paired across matches, the model is 0.021 nats better (t = 4.5).
+The Elo-only baseline is similar to my model, only with the rating blend reduced to the Elo prior. 
+Paired across matches, the model is 0.030 nats better (t = 5.1), meaning the model produces 
+a noticable impact over just using Elo to predict the tournament.
 
 The rating weights were picked off held-out profiles on the outer split, so that split can't
 also judge the result. The backtest is independent of it.
 
 ### Calibration
 
-Held-out predictions are grouped by how confident they were, then compared against how often
-those outcomes actually happened. The mean gap between the two is 1.9 percentage points and
-the largest is 5.0.
+A model is well calibrated when the things it calls 70% happen about 70% of the time. This table shows every 
+held-out prediction, grouped by how confident it was, against how often those outcomes actually happened.
 
-The model is underconfident at both ends. Its strongest calls averaged 81.6% and came in 86.3%
-of the time, and its 10-20% calls averaged 15.4% and came in 11.6% of the time. The middle of
-the range is close.
+| range | model said | actually happened | matches |
+|---|---:|---:|---:|
+| 0-10% | 5.0% | 5.6% | 1,205 |
+| 10-20% | 15.3% | 13.8% | 1,484 |
+| 20-30% | 25.4% | 26.4% | 2,291 |
+| 30-40% | 33.8% | 33.7% | 1,250 |
+| 40-50% | 44.7% | 43.5% | 620 |
+| 50-60% | 54.7% | 54.0% | 569 |
+| 60-70% | 64.7% | 65.9% | 498 |
+| 70-100% | 83.2% | 83.1% | 876 |
+
+The mean absolute gap is 0.8 points, and the largest is 1.5.
 
 ## 5. How it performed
 
 The tournament was not used to fit or select anything. These score the published forecast
 against what happened, and every figure here is reproduced by `python -m wcmodel.evaluate`.
 
-**Match level, all 104 matches.**
+**Compared to all 104 World Cup 2026 matches.**
 
 | | log loss | accuracy | RPS |
 |---|---:|---:|---:|
-| this model | 0.731 | 71/104 | 0.150 |
-| Elo-only baseline | 0.795 | 66/104 | 0.172 |
+| this model | 0.725 | 70/104 | 0.149 |
+| Elo-only baseline | 0.788 | 68/104 | 0.170 |
 
-RPS covers the 72 group matches, the ones with three ordered outcomes.
+Group matches are scored on 90 minute probabilities, since a group match can end level. Knockout ties are scored on who advanced, because that is what a tie resolves to once extra time and penalties are done. That is also why RPS only covers the 72 group matches, as they are the ones with three ordered outcomes.
 
-Paired across matches, 8.0% lower log loss than the baseline (t = 3.8).
+Scored on the same matches, the model's log loss is 8.0% lower than the baseline, and a paired test gives t = 3.3.
 
-Group matches are scored on 90 minute probabilities and knockout ties on who advanced, since
-that is what a knockout tie actually resolves to. Of the 84 matches that produced a winner, 71
-were called correctly. Of the 20 group matches that ended level, none were, because a draw is
-never the single most likely result. The model picked the advancing side in 27 of the 32 knockout matches.
+Of the 84 matches that produced a winner, the model called 70. It called none of the 20 group matches that finished level, since a draw is never the single most likely result, and it picked the advancing side in 26 of the 32 knockout ties.
 
-The worst call was Spain 0-0 Cabo Verde, where Spain were 89.6% to win. Every one of the
-model's confident misses was a draw, which is the same weakness as the goal margin problem below.
+The worst call was Spain 0-0 Cabo Verde, where Spain were 93.6% to win. Every confident miss was a draw, which is the same weakness as the goal margin problem below.
 
-The simulation averaged 2.74 goals a match against 2.96 in the tournament itself. World Cups
-since 1998 averaged 2.54, so the model correctly predicted that a 48-team tournament would produce more goals, but underestimated the amount.
+The simulation averaged 2.76 goals a match against 2.96 in the tournament itself. World Cups since 1998 averaged 2.54, so the model correctly predicted that a 48-team tournament would produce more goals, but underestimated the amount.
 
-**Group escape, 48 teams.** Brier 0.151 against 0.222 for a constant 32 of 48. The best a
-perfectly calibrated forecast could have managed on these probabilities is 0.144.
+**Group escape, 48 teams.** Brier 0.154 against 0.222 for a constant 32 of 48. The best a
+perfectly calibrated forecast could have managed on these probabilities is 0.132.
 
 **Bracket.** 26 of the 32 teams in the round of 32, 14 of 16 in the last 16, 6 of 8
 quarter-finalists, all 4 semi-finalists, both finalists, and Spain as champion.
@@ -175,19 +176,24 @@ so the two can be compared. That version was fully built and submitted before th
 kicked off. This one uses the same pre-tournament data but development began during the
 tournament, so nothing it saw goes past the freeze date even though the code was written after.
 
+That version picked the most likely scoreline for every match rather than sampling one, so its
+bracket was deterministic. This was to match the requirements of the competition, which required
+you to predict the exact scoreline, card numbers and corners. The scorelines are sampled here
+instead, turning the output into a probability distribution.
+
 ## 6. Model limitations
 
 **Title odds can't be validated.** One champion per tournament. The claims here are at match
 level.
 
-**Goal margins don't match history.** Too few one goal games and draws, too many three goal
-margins, against what World Cup scorelines actually look like.
-Independent Poisson has no way to know a leading team eases off, and the Dixon-Coles
-correction only touches the four lowest scoring results.
+**Goal margins don't match history.** There are too few one goal games and draws and too many three goal
+margins compared to what World Cup scorelines actually look like. Independent Poisson has no way to know a 
+leading team eases off offensively, and the Dixon-Coles correction only touches the four lowest scoring results.
 
 ![Simulated scoreline distribution](images/scoreline_distribution.png)
 
-**One rating per team.** A team that changed level mid-window can't be represented by a single number.
+**One rating per team.** A team that significantly improved or regressed during the 5 year window can't 
+accurately be represented by a single number.
 
 **Cards barely matter.** Yellows and reds are simulated but don't affect a match result. They
 only enter through the fair play tiebreaker, which needs teams level on points, goal difference,
@@ -200,10 +206,12 @@ to estimate an advantage from.
 **Datasets don't differentiate between a played and forfeited game.** Forfeits and administrative wins enter the
 ratings as scorelines, and a model built on goals has no way to discount them. The heaviest
 weighted fixture in the window is one of these, Morocco's 3-0 win over Senegal in the 2025
-African Cup of Nations final, which finished 1-0 the other way on the pitch. The result stands,
-but reading it as played makes Senegal's defence rating 11% worse.
+African Cup of Nations final, which finished 1-0 the other way on the pitch. The result stands, but correcting it to that scoreline would improve Senegal's defence rating by 13.3%.
 
 ## 7. Cut features
+
+**Shrinkage.** An exponent that compressed the rating spread, so the strongest and weakest
+teams sat closer to the field. Removed to simplify the model.
 
 **Travel fatigue.** Initially looked worth it, but most of the effect came from legs where
 nobody travelled, since a large share follow a gap of a month or more. When travel was

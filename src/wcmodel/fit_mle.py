@@ -30,11 +30,9 @@ from wcmodel.team_data import *
 
 VALIDATION_FRACTION = 0.20
 
-COARSE_SHRINKAGE = np.round(np.arange(0.60, 1.21, 0.05), 3)
 COARSE_RAW = np.round(np.arange(0.00, 0.61, 0.05), 3)
 COARSE_ELO = np.round(np.arange(0.00, 0.61, 0.05), 3)
 
-SHRINKAGE_BOUNDS = (0.50, 1.30)
 RAW_BOUNDS = (0.00, 0.60)
 ELO_BOUNDS = (0.00, 0.60)
 
@@ -49,10 +47,8 @@ PROFILE_GRIDS = {
 }
 
 STAGE_ONE_GRIDS = {
-    'shrinkage' : np.round(np.arange(0.70, 1.001, 0.02), 3),
     'raw_weight' : np.round(np.arange(0.00, 0.241, 0.02), 3),
     'elo_weight' : np.round(np.arange(0.00, 0.501, 0.05), 3),
-    'schedule_weight' : np.round(np.arange(0.00, 0.081, 0.01), 3),
     'value_weight' : np.round(np.arange(0.00, 0.151, 0.01), 3),
 }
 
@@ -181,15 +177,15 @@ def refine(value, step, bounds, span = 4):
 
     return np.unique(np.round(np.clip(grid, *bounds), 4))
 
-def search_stage_one(split, teams, team_index, elo_prior, schedule_faced, squad_value, grids,
-                     schedule_weight = SCHEDULE_WEIGHT, home_advantage = 1.0):
+def search_stage_one(split, teams, team_index, elo_prior, squad_value, grids,
+                     home_advantage = 1.0):
 
     """
     Grid searches the rating weights on the inner validation split.
 
     Every combination rebuilds the ratings from the inner training data and scores them on
-    fixtures the build never saw. Fitting these by likelihood instead would set shrinkage to 1
-    and the priors to 0 every time.
+    fixtures the build never saw. Fitting these by likelihood instead would set the priors to
+    0 every time.
 
     Parameters
     ----------
@@ -199,12 +195,10 @@ def search_stage_one(split, teams, team_index, elo_prior, schedule_faced, squad_
         Every team in the window, sorted.
     team_index : dict of {str : int}
         Team name to its position in teams.
-    elo_prior, schedule_faced, squad_value : np.ndarray
+    elo_prior, squad_value : np.ndarray
         Rating inputs built from the inner training data.
     grids : tuple of np.ndarray
-        Values to try for shrinkage, raw weight and Elo weight.
-    schedule_weight : float, default SCHEDULE_WEIGHT
-        Held fixed rather than searched.
+        Values to try for raw weight and Elo weight.
     home_advantage : float, default 1.0
         Passed through to the rating build.
 
@@ -219,7 +213,7 @@ def search_stage_one(split, teams, team_index, elo_prior, schedule_faced, squad_
     solved_attack, solved_defence, sum_weight = solve_team_ratings(inner_training, teams,
                                                                    team_index, home_advantage)
 
-    shrinkage_grid, raw_grid, elo_grid = grids
+    raw_grid, elo_grid = grids
     best = None
 
     for raw_weight in raw_grid:
@@ -233,25 +227,19 @@ def search_stage_one(split, teams, team_index, elo_prior, schedule_faced, squad_
             blended_defence = blend_ratings(solved_defence, raw_conceded, -elo_prior,
                                             raw_weight, elo_weight, sum_weight)
 
-            for shrinkage in shrinkage_grid:
+            attack, defence = apply_squad_value(blended_attack, blended_defence,
+                                                squad_value, VALUE_WEIGHT)
 
-                attack, defence = apply_schedule_adjustment(blended_attack ** shrinkage,
-                                                            blended_defence ** shrinkage,
-                                                            schedule_faced, schedule_weight)
-                attack, defence = apply_squad_value(attack, defence, squad_value, VALUE_WEIGHT)
+            nll = goal_nll(attack, defence, inner_validation, team_index)
 
-                nll = goal_nll(attack, defence, inner_validation, team_index)
-
-                if best is None or nll < best['inner_validation_nll']:
-                    best = {'shrinkage' : round(float(shrinkage), 4),
-                            'raw_weight' : round(float(raw_weight), 4),
-                            'elo_weight' : round(float(elo_weight), 4),
-                            'inner_validation_nll' : float(nll)}
+            if best is None or nll < best['inner_validation_nll']:
+                best = {'raw_weight' : round(float(raw_weight), 4),
+                        'elo_weight' : round(float(elo_weight), 4),
+                        'inner_validation_nll' : float(nll)}
 
     return best
 
-def fit_stage_one(split, teams, team_index, schedule_weight = SCHEDULE_WEIGHT,
-                  home_advantage = 1.0):
+def fit_stage_one(split, teams, team_index, home_advantage = 1.0):
 
     """
     Chooses the rating weights, coarse then fine, and rebuilds on the outer training window.
@@ -264,8 +252,6 @@ def fit_stage_one(split, teams, team_index, schedule_weight = SCHEDULE_WEIGHT,
         Every team in the window, sorted.
     team_index : dict of {str : int}
         Team name to its position in teams.
-    schedule_weight : float, default SCHEDULE_WEIGHT
-        Held fixed rather than searched.
     home_advantage : float, default 1.0
         Passed through to the rating build.
 
@@ -278,39 +264,31 @@ def fit_stage_one(split, teams, team_index, schedule_weight = SCHEDULE_WEIGHT,
 
     inner_training = split['inner_training']
     inner_prior = calc_avg_elo(inner_training, teams, team_index)
-    inner_schedule = calc_relative_schedule(inner_training, teams, team_index)
     squad_value = calc_squad_value(teams)
 
-    coarse = search_stage_one(split, teams, team_index, inner_prior, inner_schedule, squad_value,
-                              (COARSE_SHRINKAGE, COARSE_RAW, COARSE_ELO),
-                              schedule_weight, home_advantage)
+    coarse = search_stage_one(split, teams, team_index, inner_prior, squad_value,
+                              (COARSE_RAW, COARSE_ELO), home_advantage)
 
-    fine = search_stage_one(split, teams, team_index, inner_prior, inner_schedule, squad_value,
-                            (refine(coarse['shrinkage'], 0.01, SHRINKAGE_BOUNDS),
-                             refine(coarse['raw_weight'], 0.01, RAW_BOUNDS),
-                             refine(coarse['elo_weight'], 0.01, ELO_BOUNDS)),
-                            schedule_weight, home_advantage)
+    fine = search_stage_one(split, teams, team_index, inner_prior, squad_value,
+                            (refine(coarse['raw_weight'], 0.01, RAW_BOUNDS),
+                             refine(coarse['elo_weight'], 0.01, ELO_BOUNDS)), home_advantage)
 
     best = fine if fine['inner_validation_nll'] <= coarse['inner_validation_nll'] else coarse
-    best['schedule_weight'] = schedule_weight
     best['value_weight'] = VALUE_WEIGHT
     best['home_advantage_applied'] = round(float(home_advantage), 4)
 
     # Rebuilt on the full outer-training window with the selected parameters.
     outer_training = split['outer_training']
     outer_prior = calc_avg_elo(outer_training, teams, team_index)
-    outer_schedule = calc_relative_schedule(outer_training, teams, team_index)
 
     solved_attack, solved_defence, sum_weight = solve_team_ratings(outer_training, teams,
                                                                    team_index, home_advantage)
     raw_scored, raw_conceded = calc_raw_rates(outer_training, teams, team_index, home_advantage)
 
-    attack, defence = apply_schedule_adjustment(
-        blend_ratings(solved_attack, raw_scored, outer_prior, best['raw_weight'],
-                      best['elo_weight'], sum_weight) ** best['shrinkage'],
-        blend_ratings(solved_defence, raw_conceded, -outer_prior, best['raw_weight'],
-                      best['elo_weight'], sum_weight) ** best['shrinkage'],
-        outer_schedule, schedule_weight)
+    attack = blend_ratings(solved_attack, raw_scored, outer_prior, best['raw_weight'],
+                           best['elo_weight'], sum_weight)
+    defence = blend_ratings(solved_defence, raw_conceded, -outer_prior, best['raw_weight'],
+                            best['elo_weight'], sum_weight)
 
     attack, defence = apply_squad_value(attack, defence, squad_value, VALUE_WEIGHT)
 
@@ -554,7 +532,7 @@ def profile_stage_one(parameter, shipped, components, fixtures, team_index):
         The curve as a DataFrame, and the interval as a pair, with None where unbounded.
     """
 
-    solved_attack, solved_defence, sum_weight, raw_scored, raw_conceded, prior, schedule, value = components
+    solved_attack, solved_defence, sum_weight, raw_scored, raw_conceded, prior, value = components
 
     rows = []
 
@@ -563,12 +541,10 @@ def profile_stage_one(parameter, shipped, components, fixtures, team_index):
         weights = dict(shipped)
         weights[parameter] = float(candidate)
 
-        attack, defence = apply_schedule_adjustment(
-            blend_ratings(solved_attack, raw_scored, prior, weights['raw_weight'],
-                          weights['elo_weight'], sum_weight) ** weights['shrinkage'],
-            blend_ratings(solved_defence, raw_conceded, -prior, weights['raw_weight'],
-                          weights['elo_weight'], sum_weight) ** weights['shrinkage'],
-            schedule, weights['schedule_weight'])
+        attack = blend_ratings(solved_attack, raw_scored, prior, weights['raw_weight'],
+                               weights['elo_weight'], sum_weight)
+        defence = blend_ratings(solved_defence, raw_conceded, -prior, weights['raw_weight'],
+                                weights['elo_weight'], sum_weight)
 
         attack, defence = apply_squad_value(attack, defence, value, weights['value_weight'])
 
@@ -655,6 +631,51 @@ def fit_home_advantage(df, attack, defence, team_index):
             'matches' : int(len(fixtures)),
             'gain_over_no_advantage' : round(no_advantage_nll - best.fun, 2)}
 
+def refit_shipped(components, df, wc_all, team_index):
+
+    """
+    Refits the engine constants against the weights the model actually ships with.
+
+    The searched refit elsewhere in this module uses whatever Stage 1 weights the grid picked,
+    which is the right thing for judging the search but not for setting the constants. These
+    are the values that belong in match.py, since they are conditional on the shipped weights.
+
+    Parameters
+    ----------
+    components : tuple of np.ndarray
+        Rating inputs, in the order built in main.
+    df : pd.DataFrame
+        Match data from build_team_match_data, used for home advantage.
+    wc_all : pd.DataFrame
+        Fixtures between the finalists, which rho and the goal baseline are fitted on.
+    team_index : dict of {str : int}
+        Team name to its position in teams.
+
+    Returns
+    -------
+    dict
+        Rho, the goal baseline and home advantage at the shipped weights, with the fixture
+        counts each was fitted on.
+    """
+
+    (solved_attack, solved_defence, sum_weight, raw_scored, raw_conceded,
+     prior, squad_value) = components
+
+    attack = blend_ratings(solved_attack, raw_scored, prior, RAW_WEIGHT, ELO_WEIGHT, sum_weight)
+    defence = blend_ratings(solved_defence, raw_conceded, -prior,
+                            RAW_WEIGHT, ELO_WEIGHT, sum_weight)
+
+    attack, defence = apply_squad_value(attack, defence, squad_value, VALUE_WEIGHT)
+
+    engine = fit_stage_two(wc_all, wc_all, attack, defence, team_index)
+    home = fit_home_advantage(df, attack, defence, team_index)
+
+    return {'raw_weight' : RAW_WEIGHT, 'elo_weight' : ELO_WEIGHT,
+            'rho' : engine['rho'], 'g' : engine['g'],
+            'home_advantage' : home['home_advantage'],
+            'finalist_fixtures' : int(len(wc_all)), 'home_fixtures' : home['matches']}
+
+
 def profile_home_advantage(negative_log_likelihood, fitted):
 
     """
@@ -730,10 +751,9 @@ def main():
 
     stage_one, attack, defence = fit_stage_one(split, teams, team_index)
 
-    print(f'STAGE 1  schedule {stage_one["schedule_weight"]} (design)  '
-          f'value {stage_one["value_weight"]} (design)  shrinkage {stage_one["shrinkage"]}  '
+    print(f'STAGE 1  value {stage_one["value_weight"]} (design)  '
           f'raw {stage_one["raw_weight"]}  elo {stage_one["elo_weight"]}')
-    print(f'         shrinkage, raw, elo on inner-validation NLL/match '
+    print(f'         raw, elo on inner-validation NLL/match '
           f'{stage_one["inner_validation_nll"] / len(split["inner_validation"]):.6f}'
           f'   outer train {stage_one["outer_train_nll"] / len(training):.6f}')
 
@@ -757,12 +777,10 @@ def main():
     solved_attack, solved_defence, sum_weight = solve_team_ratings(df, teams, team_index)
     raw_scored, raw_conceded = calc_raw_rates(df, teams, team_index)
 
-    final_attack, final_defence = apply_schedule_adjustment(
-        blend_ratings(solved_attack, raw_scored, full_prior, stage_one['raw_weight'],
-                      stage_one['elo_weight'], sum_weight) ** stage_one['shrinkage'],
-        blend_ratings(solved_defence, raw_conceded, -full_prior, stage_one['raw_weight'],
-                      stage_one['elo_weight'], sum_weight) ** stage_one['shrinkage'],
-        full_schedule, stage_one['schedule_weight'])
+    final_attack = blend_ratings(solved_attack, raw_scored, full_prior, stage_one['raw_weight'],
+                                 stage_one['elo_weight'], sum_weight)
+    final_defence = blend_ratings(solved_defence, raw_conceded, -full_prior,
+                                  stage_one['raw_weight'], stage_one['elo_weight'], sum_weight)
 
     final_attack, final_defence = apply_squad_value(final_attack, final_defence,
                                                     squad_value, VALUE_WEIGHT)
@@ -778,10 +796,10 @@ def main():
           f'{home["non_neutral"]:,} non-neutral matches, worth '
           f'{home["gain_over_no_advantage"]:.0f} units (reported, not applied)')
 
-    shipped = {'shrinkage' : SHRINKAGE, 'raw_weight' : RAW_WEIGHT, 'elo_weight' : ELO_WEIGHT,
-               'schedule_weight' : SCHEDULE_WEIGHT, 'value_weight' : VALUE_WEIGHT}
+    shipped = {'raw_weight' : RAW_WEIGHT, 'elo_weight' : ELO_WEIGHT,
+               'value_weight' : VALUE_WEIGHT}
     components = (solved_attack, solved_defence, sum_weight, raw_scored, raw_conceded,
-                  full_prior, full_schedule, squad_value)
+                  full_prior, squad_value)
 
     stage_one_intervals = {}
     for parameter in STAGE_ONE_GRIDS:
@@ -842,6 +860,17 @@ def main():
     print(ratings.sort_values('overall_rank')
           [['attack', 'attack_rank', 'defence', 'defence_rank']].head(16).round(3).to_string())
 
+    # Last, so its home advantage profile is the curve kept on disk rather than the searched one.
+    shipped_refit = refit_shipped(components, df, wc_all, team_index)
+
+    print()
+    print('SHIPPED REFIT (the constants match.py runs on)')
+    print(f'  at raw {shipped_refit["raw_weight"]}, elo {shipped_refit["elo_weight"]}')
+    print(f'  rho = {shipped_refit["rho"]}  g = {shipped_refit["g"]} on '
+          f'{shipped_refit["finalist_fixtures"]:,} fixtures between finalists')
+    print(f'  home advantage = {shipped_refit["home_advantage"]} on '
+          f'{shipped_refit["home_fixtures"]:,} fixtures')
+
     summary = {
         'window' : {'start' : START_DATE, 'freeze' : FREEZE_DATE,
                     'length' : WINDOW, 'decay_rate' : DECAY_RATE},
@@ -852,6 +881,7 @@ def main():
         'stage_1' : stage_one,
         'stage_2' : stage_two,
         'final_engine' : final_engine,
+        'shipped_refit' : shipped_refit,
         'profile_intervals' : intervals,
         'stage_one_intervals' : stage_one_intervals,
         'home' : home,

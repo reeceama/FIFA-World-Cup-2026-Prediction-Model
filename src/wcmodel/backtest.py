@@ -21,8 +21,8 @@ from wcmodel.team_data import *
 RETRAINING_POINTS = 17
 INITIAL_FRACTION = 0.45  # first 45% of fixtures is training only
 
-SHIPPED = (SHRINKAGE, RAW_WEIGHT, ELO_WEIGHT, VALUE_WEIGHT, SCHEDULE_WEIGHT)
-ELO_ONLY = (SHRINKAGE, 0.0, 1.0, 0.0, 0.0)
+SHIPPED = (RAW_WEIGHT, ELO_WEIGHT, VALUE_WEIGHT)
+ELO_ONLY = (0.0, 1.0, 0.0)
 
 MAX_GOALS = 9
 
@@ -39,7 +39,7 @@ def build_ratings(training, weights, teams, team_index, squad_value):
     training : pd.DataFrame
         Fixtures up to this fold's cut date.
     weights : tuple of float
-        Shrinkage, raw, Elo, value and schedule weights. SHIPPED or ELO_ONLY.
+        Raw, Elo and value weights. SHIPPED or ELO_ONLY.
     teams : list of str
         Every team in the window, sorted.
     team_index : dict of {str : int}
@@ -53,18 +53,16 @@ def build_ratings(training, weights, teams, team_index, squad_value):
         Attack and defence, indexed by position in teams.
     """
 
-    shrinkage, raw_weight, elo_weight, value_weight, schedule_weight = weights
+    raw_weight, elo_weight, value_weight = weights
 
     prior = calc_avg_elo(training, teams, team_index)
-    schedule = calc_relative_schedule(training, teams, team_index)
     solved_attack, solved_defence, sum_weight = solve_team_ratings(training, teams, team_index)
     raw_scored, raw_conceded = calc_raw_rates(training, teams, team_index)
 
     attack = blend_ratings(solved_attack, raw_scored, prior,
-                           raw_weight, elo_weight, sum_weight) ** shrinkage
+                           raw_weight, elo_weight, sum_weight)
     defence = blend_ratings(solved_defence, raw_conceded, -prior,
-                            raw_weight, elo_weight, sum_weight) ** shrinkage
-    attack, defence = apply_schedule_adjustment(attack, defence, schedule, schedule_weight)
+                            raw_weight, elo_weight, sum_weight)
 
     return attack * np.exp(value_weight * squad_value), defence * np.exp(-value_weight * squad_value)
 

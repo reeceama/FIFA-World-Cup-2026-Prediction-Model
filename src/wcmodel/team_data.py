@@ -1,6 +1,6 @@
 """
 This module loads the international results, applies the time window, weighs every fixture by recency and tournament importance,
-then turns those weighted results into an attack an defence rating for each participating team.
+then turns those weighted results into an attack and a defence rating for each participating team.
 
 Each team's attack is divided by the defensive strength of the teams they faced during the window, and vice versa.
 After, the ratings are blended with an Elo prior, raw goal rates and squad market values.
@@ -116,10 +116,8 @@ ELIGIBILITY = 'wf_avg_elo.csv'
 SQUAD_VALUES = 'tm_squad_values.csv'
 
 # Constants set by held-out data.
-SHRINKAGE = 0.84
 RAW_WEIGHT = 0.10
 ELO_WEIGHT = 0.30
-SCHEDULE_WEIGHT = 0.00
 VALUE_WEIGHT = 0.07
 
 SOLVER_ITERATIONS = 4000
@@ -284,9 +282,9 @@ def calc_relative_schedule(df, teams, team_index):
     """
     How strong a team's opponents were, relative to the team itself.
 
-    As SCHEDULE_WEIGHT = 0, this function is currently unused in attack and defence 
-    calculations. However, it remains as it's still informative in relation to how difficult 
-    each team's matchups have been, and it's reported in the team stat table.
+    Not used in the ratings. It is reported in the team stats table, since it is still
+    informative about how hard a team's fixtures were, and it is the measurement behind the
+    schedule strength entry in the README's cut features.
 
     Parameters
     ----------
@@ -529,34 +527,6 @@ def blend_ratings(solved, raw, elo_prior, raw_weight, elo_weight, sum_weight):
                   + raw_weight * log_raw + elo_weight * log_prior)
 
 
-def apply_schedule_adjustment(attack, defence, schedule_faced, weight):
-
-    """
-    Shift ratings by how hard a team's schedule was. 
-    
-    Returns them unchanged at the shipped weight of 0
-
-    Parameters
-    ----------
-    attack, defence : np.ndarray
-        Blended ratings, indexed by position in teams.
-    schedule_faced : np.ndarray
-        Standardised schedule strength from calc_relative_schedule.
-    weight : float
-        How much the adjustment counts. Shipped at 0.00.
-
-    Returns
-    -------
-    tuple of np.ndarray
-        Adjusted attack and defence.
-    """
-
-    if weight == 0:
-        return attack, defence
-
-    return attack * np.exp(-weight * schedule_faced), defence * np.exp(weight * schedule_faced)
-
-
 def apply_squad_value(attack, defence, squad_value, weight):
 
     """
@@ -637,8 +607,8 @@ def build_all_team_data(df = None):
     """
     Run the whole rating pipeline and return the finalists' stats.
 
-    Solves the ratings, blends them with the raw rates and the Elo prior, applies shrinkage,
-    schedule and squad value, then builds the table. This is the function the notebooks call.
+    Solves the ratings, blends them with the raw rates and the Elo prior, applies squad value,
+    then builds the table. This is the function the notebooks call.
 
     Parameters
     ----------
@@ -663,12 +633,10 @@ def build_all_team_data(df = None):
     schedule_faced = calc_relative_schedule(df, teams, team_index)
     squad_value = calc_squad_value(teams)
 
-    attack_rating, defence_rating = apply_schedule_adjustment(
-        blend_ratings(solved_attack, raw_scored, elo_prior,
-                      RAW_WEIGHT, ELO_WEIGHT, sum_weight) ** SHRINKAGE,
-        blend_ratings(solved_defence, raw_conceded, -elo_prior,
-                      RAW_WEIGHT, ELO_WEIGHT, sum_weight) ** SHRINKAGE,
-        schedule_faced, SCHEDULE_WEIGHT)
+    attack_rating = blend_ratings(solved_attack, raw_scored, elo_prior,
+                                  RAW_WEIGHT, ELO_WEIGHT, sum_weight)
+    defence_rating = blend_ratings(solved_defence, raw_conceded, -elo_prior,
+                                   RAW_WEIGHT, ELO_WEIGHT, sum_weight)
 
     attack_rating, defence_rating = apply_squad_value(
         attack_rating, defence_rating, squad_value, VALUE_WEIGHT)
